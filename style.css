@@ -1,59 +1,108 @@
 
+/* Reset dasar dan font */
 * {
-  box-sizing: border-box;
-}
-body {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
-  background: #f0f0f0;
-  animation: fadeIn 0.7s ease-in-out;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+body {
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Header dan navigasi */
 header {
-  background: linear-gradient(to bottom, #a8e6cf, #56ab2f);
-  color: white;
-  padding: 1em;
+  background: linear-gradient(to right, #a8e063, #56ab2f);
+  padding: 1rem 2rem;
   text-align: center;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
+
+nav {
+  margin-top: 0.5rem;
+}
+
 nav a {
-  margin: 0 10px;
+  margin: 0 1rem;
   text-decoration: none;
   color: white;
   font-weight: bold;
-  transition: 0.3s;
+  transition: color 0.3s ease;
 }
+
 nav a:hover {
-  color: #ffff88;
+  color: #004400;
 }
-main {
-  padding: 1em;
+
+/* Halaman utama dan konten */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.5rem;
+  animation: fadeIn 1s ease-in;
 }
-.card {
-  background: white;
-  padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-top: 1em;
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-table {
+
+/* Tabel putih */
+.table-box {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+.table-box table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
-  padding: 8px;
+
+.table-box th, .table-box td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #ccc;
   text-align: left;
-  border: 1px solid #ddd;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+
+.table-box th {
+  background-color: #f0f0f0;
 }
-@media screen and (max-width: 600px) {
-  header h1 {
-    font-size: 1.5em;
-  }
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
   nav a {
     display: block;
-    margin: 5px 0;
+    margin: 0.5rem 0;
   }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .table-box {
+    padding: 1rem;
+  }
+
+  header {
+    font-size: 1rem;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: #56ab2f;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
 }
