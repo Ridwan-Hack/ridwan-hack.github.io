@@ -1,25 +1,57 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Beranda - SDN Dawuan Tengah VI</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDN Dawuan Tengah VI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="/static/logo.png" type="image/png">
 </head>
 <body>
-  <header>
-    <h1 class="animated fadeInDown">Wileujeng Sumping ka SDN Dawuan Tengah VI</h1>
-    <nav>
-      <a href="index.html">Beranda</a>
-      <a href="profil.html">Profil</a>
-      <a href="berita.html">Berita</a>
+  <header class="header">
+    <h1>SDN Dawuan Tengah VI</h1>
+    <nav class="navbar">
+      <a href="#beranda">Beranda</a>
+      <a href="#profil">Profil</a>
+      <a href="#berita">Berita</a>
+      <a href="#kontak">Kontak</a>
     </nav>
-  </header>
-  <main>
-    <section class="content-card animated fadeInUp">
-      <h2>Selamat datang di website resmi SDN Dawuan Tengah VI</h2>
-      <p>Website ini dibuat untuk memberikan informasi terkini tentang sekolah kami.</p>
-    </section>
-  </main>
-</body>
+    <button id="darkModeToggle">Mode Gelap</button>
+  </header>  <section id="beranda" class="section">
+    <h2>Wileujeng Sumping ka SDN Dawuan Tengah VI</h2>
+    <div class="progress-bar"></div>
+    <div class="parallax">Selamat datang di sekolah kami!</div>
+  </section>  <section id="profil" class="section">
+    <h2>Profil Sekolah</h2>
+    <table class="info-table">
+      <tr><th>Nama</th><td>SDN Dawuan Tengah VI</td></tr>
+      <tr><th>Alamat</th><td>Kelurahan Dawuhan Barat, Cikampek, Karawang</td></tr>
+      <tr><th>Visi</th><td>Mencetak generasi cerdas dan berakhlak mulia</td></tr>
+    </table>
+  </section>  <section id="berita" class="section">
+    <h2>Berita Terkini</h2>
+    <div class="berita-box">
+      <h3>Persami (Perkemahan Sabtu-Minggu)</h3>
+      <p>Pelaksanaan: 03 - 04 Mei 2025</p>
+      <p>Akan ada api unggun pukul 19.30 WIB</p>
+    </div>
+  </section>  <section id="kontak" class="section">
+    <h2>Kontak Kami</h2>
+    <form action="#" method="post">
+      <input type="text" name="nama" placeholder="Nama" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>  <footer>
+    <p>Dibuat oleh Ridwan 5B</p>
+  </footer>  <script>
+    // Mode gelap
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.onclick = () => document.body.classList.toggle('dark-mode');
+
+    // Scroll animation
+    window.addEventListener('scroll', () => {
+      document.querySelector('.progress-bar').style.width = `${(window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100}%`;
+    });
+  </script></body>
 </html>
