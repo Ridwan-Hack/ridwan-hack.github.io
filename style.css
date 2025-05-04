@@ -1,108 +1,69 @@
-
-/* Reset dasar dan font */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 body {
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-  scroll-behavior: smooth;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #ccffcc, #006600);
+  color: #000;
 }
-
-/* Header dan navigasi */
 header {
-  background: linear-gradient(to right, #a8e063, #56ab2f);
-  padding: 1rem 2rem;
+  background-color: #004d00;
+  color: white;
+  padding: 1em;
   text-align: center;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
-
-nav {
-  margin-top: 0.5rem;
-}
-
 nav a {
-  margin: 0 1rem;
-  text-decoration: none;
   color: white;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  margin: 0 1em;
+  text-decoration: none;
 }
-
 nav a:hover {
-  color: #004400;
+  text-decoration: underline;
 }
-
-/* Halaman utama dan konten */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 1.5rem;
-  animation: fadeIn 1s ease-in;
+main {
+  padding: 1em;
 }
-
-@keyframes fadeIn {
+.content-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em auto;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+th, td {
+  border: 1px solid #004d00;
+  padding: 0.5em;
+  text-align: left;
+}
+@keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-/* Tabel putih */
-.table-box {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 2rem;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.table-box table {
-  width: 100%;
-  border-collapse: collapse;
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
-
-.table-box th, .table-box td {
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
+.fadeInUp {
+  animation-name: fadeInUp;
 }
-
-.table-box th {
-  background-color: #f0f0f0;
+.fadeInDown {
+  animation-name: fadeInDown;
 }
-
-/* Responsif Mobile */
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
+  .content-card {
+    margin: 1em;
+    padding: 1em;
+  }
   nav a {
     display: block;
-    margin: 0.5rem 0;
+    margin: 0.5em 0;
   }
-
-  .container {
-    padding: 1rem;
-  }
-
-  .table-box {
-    padding: 1rem;
-  }
-
-  header {
-    font-size: 1rem;
-  }
-}
-
-/* Footer */
-footer {
-  background-color: #56ab2f;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
 }
