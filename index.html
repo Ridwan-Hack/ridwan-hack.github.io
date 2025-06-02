@@ -1,57 +1,425 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SDN Dawuan Tengah VI</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="/static/logo.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YouTube/TikTok Link Tracker</title>
+  <style>
+    /* Modern, clean styling */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    header {
+      margin: 1rem 0 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+    header p {
+      font-weight: 400;
+      color: #dcd6f7;
+    }
+    main {
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(255 255 255, 0.1);
+    }
+    form {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    input[type="url"] {
+      flex-grow: 1;
+      padding: 0.8rem 1rem;
+      border-radius: 9999px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+    button {
+      background-color: #f5a623;
+      border: none;
+      border-radius: 9999px;
+      padding: 0 1.8rem;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      min-width: 140px;
+    }
+    button:hover {
+      background-color: #d48806;
+    }
+    section {
+      margin-top: 1rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+      border-bottom: 2px solid #f5a623;
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+    ul.tracks-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 300px;
+      overflow-y: auto;
+      border-radius: 8px;
+      background: rgba(255 255 255 / 0.15);
+      box-shadow: inset 0 0 10px rgb(0 0 0 / 0.15);
+    }
+    ul.tracks-list li {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(255 255 255 / 0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+    }
+    ul.tracks-list li:hover {
+      background-color: rgba(255 255 255, 0.1);
+    }
+    ul.tracks-list li:last-child {
+      border-bottom: none;
+    }
+    .track-link {
+      color: #fde68a;
+      text-decoration: underline;
+      word-break: break-all;
+      max-width: 80%;
+    }
+    .visit-count {
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: #f5a623;
+      color: #333;
+      padding: 0.1rem 0.6rem;
+      border-radius: 9999px;
+      user-select:none;
+      min-width: 30px;
+      text-align: center;
+    }
+    .visits-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 220px;
+      overflow-y: auto;
+      border-radius: 8px;
+      background: rgba(255 255 255 / 0.15);
+      box-shadow: inset 0 0 10px rgb(0 0 0 / 0.15);
+    }
+    .visits-list li {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid rgba(255 255 255 / 0.3);
+      font-size: 0.9rem;
+      color: #f3f4f6;
+    }
+    .visits-list li:last-child {
+      border-bottom: none;
+    }
+    .empty-msg {
+      text-align: center;
+      color: #ddd;
+      font-style: italic;
+      padding: 0.8rem 0;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #dcd6f7;
+      user-select:none;
+      text-align: center;
+      max-width: 700px;
+    }
+    @media (max-width: 480px) {
+      button {
+        min-width: unset;
+        flex-grow: 1;
+      }
+      form {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <h1>SDN Dawuan Tengah VI</h1>
-    <nav class="navbar">
-      <a href="#beranda">Beranda</a>
-      <a href="#profil">Profil</a>
-      <a href="#berita">Berita</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-    <button id="darkModeToggle">Mode Gelap</button>
-  </header>  <section id="beranda" class="section">
-    <h2>Wileujeng Sumping ka SDN Dawuan Tengah VI</h2>
-    <div class="progress-bar"></div>
-    <div class="parallax">Selamat datang di sekolah kami!</div>
-  </section>  <section id="profil" class="section">
-    <h2>Profil Sekolah</h2>
-    <table class="info-table">
-      <tr><th>Nama</th><td>SDN Dawuan Tengah VI</td></tr>
-      <tr><th>Alamat</th><td>Kelurahan Dawuhan Barat, Cikampek, Karawang</td></tr>
-      <tr><th>Visi</th><td>Mencetak generasi cerdas dan berakhlak mulia</td></tr>
-    </table>
-  </section>  <section id="berita" class="section">
-    <h2>Berita Terkini</h2>
-    <div class="berita-box">
-      <h3>Persami (Perkemahan Sabtu-Minggu)</h3>
-      <p>Pelaksanaan: 03 - 04 Mei 2025</p>
-      <p>Akan ada api unggun pukul 19.30 WIB</p>
-    </div>
-  </section>  <section id="kontak" class="section">
-    <h2>Kontak Kami</h2>
-    <form action="#" method="post">
-      <input type="text" name="nama" placeholder="Nama" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
-      <button type="submit">Kirim</button>
-    </form>
-  </section>  <footer>
-    <p>Dibuat oleh Ridwan 5B</p>
-  </footer>  <script>
-    // Mode gelap
-    const toggle = document.getElementById('darkModeToggle');
-    toggle.onclick = () => document.body.classList.toggle('dark-mode');
+  <header>
+    <h1>Link Tracker for YouTube & TikTok</h1>
+    <p>Create tracking links to capture your visitors' IP & location</p>
+  </header>
 
-    // Scroll animation
-    window.addEventListener('scroll', () => {
-      document.querySelector('.progress-bar').style.width = `${(window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100}%`;
-    });
-  </script></body>
+  <main>
+    <form id="createForm" novalidate>
+      <input type="url" id="targetUrl" placeholder="Enter YouTube or TikTok URL" required pattern="https?://.*" autocomplete="off"/>
+      <button type="submit" title="Generate tracking link">Generate Link</button>
+    </form>
+
+    <section id="tracksSection" style="display:none;">
+      <h2>Your Tracking Links</h2>
+      <ul class="tracks-list" id="tracksList" aria-live="polite" aria-relevant="additions"></ul>
+      <section id="visitsSection" style="display:none; margin-top: 1.2rem;">
+        <h2>Visitor Info</h2>
+        <ul class="visits-list" id="visitsList" aria-live="polite"></ul>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 Link Tracker - Your privacy matters, IP & location are used only for this tracking.
+  </footer>
+
+  <script>
+    (function() {
+      // Helper: Generate a short unique ID for tracking links
+      function genId(length=8) {
+        let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let id = '';
+        for(let i=0; i<length; i++) {
+          id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
+      }
+
+      // Storage keys
+      const STORAGE_KEY = '__link_tracker_data';
+
+      // Save tracking data: Object with keys: { id: { targetUrl, visits: [{ip, country, city, time}] } }
+      function saveData(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }
+      function loadData() {
+        let data = localStorage.getItem(STORAGE_KEY);
+        if (!data) return {};
+        try {
+          return JSON.parse(data);
+        } catch(e) {
+          return {};
+        }
+      }
+
+      // Validate if URL belongs to YouTube or TikTok
+      function isValidTargetUrl(url) {
+        try {
+          let u = new URL(url);
+          let host = u.hostname.toLowerCase();
+          return host.includes('youtube.com') || host.includes('youtu.be') || host.includes('tiktok.com') || host.includes('vt.tiktok.com');
+        } catch {
+          return false;
+        }
+      }
+
+      // Elements
+      const form = document.getElementById('createForm');
+      const targetUrlInput = document.getElementById('targetUrl');
+      const tracksSection = document.getElementById('tracksSection');
+      const visitsSection = document.getElementById('visitsSection');
+      const tracksList = document.getElementById('tracksList');
+      const visitsList = document.getElementById('visitsList');
+
+      // Current selected link id for viewing visits
+      let currentViewId = null;
+
+      // Create tracking link URL (current page url + ?track=id)
+      function makeTrackingUrl(id) {
+        let currentUrl = window.location.origin + window.location.pathname;
+        return `${currentUrl}?track=${id}`;
+      }
+
+      // Render all tracking links
+      function renderTracks() {
+        const data = loadData();
+        const ids = Object.keys(data);
+        if(ids.length === 0) {
+          tracksSection.style.display = 'none';
+          visitsSection.style.display = 'none';
+          return;
+        }
+        tracksSection.style.display = 'block';
+        visitsSection.style.display = 'none';
+        visitsList.innerHTML = '';
+        tracksList.innerHTML = '';
+        ids.forEach(id => {
+          const track = data[id];
+          let li = document.createElement('li');
+          li.tabIndex = 0;
+          li.setAttribute('role', 'button');
+          li.setAttribute('aria-label', `View visits for tracked link to ${track.targetUrl}`);
+          li.title = "Click to view visitor info";
+          li.classList.add('track-item');
+
+          let linkSpan = document.createElement('span');
+          linkSpan.className = 'track-link';
+          let a = document.createElement('a');
+          a.href = makeTrackingUrl(id);
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.textContent = makeTrackingUrl(id);
+          linkSpan.appendChild(a);
+
+          let visitsCount = document.createElement('span');
+          visitsCount.className = 'visit-count';
+          visitsCount.textContent = track.visits.length;
+
+          li.appendChild(linkSpan);
+          li.appendChild(visitsCount);
+
+          li.addEventListener('click', () => {
+            currentViewId = id;
+            renderVisits(id);
+          });
+          li.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              currentViewId = id;
+              renderVisits(id);
+            }
+          });
+
+          tracksList.appendChild(li);
+        });
+      }
+
+      // Render visit data for a link
+      function renderVisits(id) {
+        visitsList.innerHTML = '';
+        const data = loadData();
+        const track = data[id];
+        if(!track) {
+          visitsSection.style.display = 'none';
+          return;
+        }
+        if(track.visits.length === 0) {
+          visitsList.innerHTML = `<li class="empty-msg">No visits yet for this link.</li>`;
+        } else {
+          track.visits.slice().reverse().forEach(visit => {
+            let li = document.createElement('li');
+            let timeFormatted = new Date(visit.time).toLocaleString();
+            li.textContent = `${visit.ip} - ${visit.city ? visit.city + ', ' : ''}${visit.country || 'Unknown location'} at ${timeFormatted}`;
+            visitsList.appendChild(li);
+          });
+        }
+        visitsSection.style.display = 'block';
+      }
+
+      // Handle creating a new tracking link
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        let url = targetUrlInput.value.trim();
+        if(!url) {
+          alert('Please enter a URL.');
+          return;
+        }
+        if(!isValidTargetUrl(url)) {
+          alert('Please enter a valid YouTube or TikTok URL.');
+          return;
+        }
+        // Save new track
+        const data = loadData();
+        let newId = genId();
+        while (data[newId]) {
+          newId = genId();
+        }
+        data[newId] = {
+          targetUrl: url,
+          visits: []
+        };
+        saveData(data);
+        targetUrlInput.value = '';
+        renderTracks();
+        alert('Tracking link created! Scroll down to see your links.');
+      });
+
+      // On load: Check if URL has ?track= parameter
+      async function onRedirectVisit() {
+        const params = new URLSearchParams(window.location.search);
+        const trackId = params.get('track');
+        if(!trackId) return; // Not a tracking redirect visit
+
+        const data = loadData();
+        const track = data[trackId];
+        if(!track) {
+          // Unknown tracking id, do nothing
+          return;
+        }
+
+        // Fetch visitor IP & location using free API
+        try {
+          // Use https://ipapi.co/json/ or https://ipinfo.io/json ?ip=[ip]
+          // ipapi.co does not require auth, up to 30k/mo free
+          let response = await fetch('https://ipapi.co/json/');
+          if(!response.ok) throw new Error('IP API request failed');
+          let info = await response.json();
+
+          let visitData = {
+            ip: info.ip || 'Unknown IP',
+            country: info.country_name || '',
+            city: info.city || '',
+            time: Date.now()
+          };
+          // Save visit
+          track.visits.push(visitData);
+          saveData(data);
+        } catch(err) {
+          // If error, still proceed redirect
+          console.warn('Failed to get visitor IP/location:', err);
+        }
+
+        // Redirect visitor to target URL after short delay
+        setTimeout(() => {
+          window.location.href = track.targetUrl;
+        }, 1500);
+
+        // Display waiting message
+        document.body.innerHTML = `
+          <div style="font-family:'Poppins', sans-serif; display:flex; justify-content:center; align-items:center; height: 100vh; background: #222; color: #f5a623; text-align:center; padding:1rem;">
+            <div>
+              <h2>Redirecting you...</h2>
+              <p>Tracking visitor info for analytics.</p>
+            </div>
+          </div>
+        `;
+      }
+
+      // Initialization
+      function init() {
+        onRedirectVisit();
+
+        // If not redirect visit, render saved tracking links
+        const params = new URLSearchParams(window.location.search);
+        if(!params.has('track')) {
+          renderTracks();
+        }
+      }
+
+      init();
+
+    })();
+  </script>
+</body>
 </html>
+
